@@ -1,13 +1,12 @@
 project:
   type: website
-  resources: 
+  resources:
     - "CNAME"
   render:
     - "*.qmd"                      # only render qmd files
-    - "!sessions/mags/answers.md"  # exclude this file
 
 website:
-  title: "Metagenomics bioinformatics at MGnify (2025)"
+  title: "Metagenomics and amplicon data at MGNify (2025)"
   favicon: static/mgnify_logo.png
   page-navigation: true
   navbar:
@@ -17,8 +16,6 @@ website:
     right:
       - href: https://www.ebi.ac.uk/metagenomics
         text: Open MGnify
-      - href: https://www.ebi.ac.uk/training/events/metagenomics-bioinformatics-2025/#vf-tabs__section--tab2
-        text: Course Programme
 
   sidebar:
     style: docked
@@ -31,7 +28,7 @@ website:
 
 format:
   html:
-    theme: 
+    theme:
       - cosmo
       - styles.scss
     toc: true
