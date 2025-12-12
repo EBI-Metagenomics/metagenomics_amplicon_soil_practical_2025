@@ -20,8 +20,8 @@ author:
 
 # Learning Objectives
 
-# Download an amplicon sample
-https://www.ebi.ac.uk/ena/browser/view/SRR5527446 --> download selected files
+## Download an amplicon sample
+https://www.ebi.ac.uk/ena/browser/view/SRR5527446 --> download selected files. We will focus on a sample from oilseed rape seeds. 
 
 What is galaxy
 
@@ -35,4 +35,50 @@ Upload the amplicon sample you downloaded.
 
 ![upload](amplicon/file_upload.png)
 
+## FastQC
 
+Look up `FastQC` in the list of tools
+
+Fastq files contain the raw sequence returned by the sequencer, including quality values associated to every base pair. 
+
+FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference. 
+
+Per base sequence quality is quite decent for all reads in the sample.
+
+![fastqc_1](amplicon/fastqc_base_quality.png)
+
+You can also look up the distribution of the average quality per read in the sample
+
+![fastqc_2](amplicon/fastqc_sequence_quality.png)
+
+You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance to the same base position containing the same base. 
+
+![fastqc_3](amplicon/fastqc_base_content.png)
+
+## Convert fastq to fasta
+
+This step is needed to proceed with downstream analyses. Fasta files are fastq files deprived of their quality values. 
+
+Look up `FASTQ to FASTA` in the list of tools
+
+Beware of pointing to the correct fastq.gz file. 
+
+## MAPseq
+
+Look up `MAPseq` in the list of tools
+
+Let's select the SSU database, as this was the targeted subunit, and default parameters.
+
+Separately we decided to run LSU and ITS databases, but the yield was very low, as expected. 
+
+We selected the option to already create a krona plot for later observation.
+
+## Kraken2
+
+Look up `MAPseq` in the list of tools, let's launch it with a default set of parameters, but only allowing for the best hit to be used. In a separate session you could change these parameters and aim for better accuracy, bearing in mind that execution time might increase. 
+
+### Kraken-report
+
+### Krakentools
+
+### Krona pie chart
