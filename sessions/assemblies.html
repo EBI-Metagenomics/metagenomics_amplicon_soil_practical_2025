@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Germana Baldi">
+<meta name="author" content="Sonya Ochkalova">
+<meta name="dcterms.date" content="2025-10-06">
+
+<title>Assembly and Co-assembly of Metagenomic Raw Reads – Metagenomics and amplicon data at MGNify (2025)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../sessions/metagenomics.html" rel="next">
+<link href="../sessions/amplicon.html" rel="prev">
+<link href="../static/mgnify_logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6bf0fe53990927c0feeb3953872c1044.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ca146c75af252fb53c9e73e81359de52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Metagenomics and amplicon data at MGNify (2025)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.ebi.ac.uk/metagenomics"> 
+<span class="menu-text">Open MGnify</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/qc.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/assemblies.html">Assembly and Co-assembly of Metagenomic Raw Reads</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sessions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/qc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quality control and filtering of the raw sequence files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/amplicon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Amplicon stuff</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/assemblies.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Assembly and Co-assembly of Metagenomic Raw Reads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/metagenomics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metagenomics stuff</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/genome_uploader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The genome_uploader: tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#before-we-start" id="toc-before-we-start" class="nav-link" data-scroll-target="#before-we-start">Before we start…</a></li>
+  <li><a href="#short-read-assemblies-metaspades" id="toc-short-read-assemblies-metaspades" class="nav-link" data-scroll-target="#short-read-assemblies-metaspades">Short-read assemblies: metaSPAdes</a></li>
+  <li><a href="#long-read-assemblies-flye" id="toc-long-read-assemblies-flye" class="nav-link" data-scroll-target="#long-read-assemblies-flye">Long-read assemblies: Flye</a></li>
+  <li><a href="#diving-into-assembly-graphs" id="toc-diving-into-assembly-graphs" class="nav-link" data-scroll-target="#diving-into-assembly-graphs">Diving Into Assembly Graphs</a></li>
+  <li><a href="#co-assemblies-megahit" id="toc-co-assemblies-megahit" class="nav-link" data-scroll-target="#co-assemblies-megahit">Co-assemblies: MEGAHIT</a></li>
+  <li><a href="#the-end" id="toc-the-end" class="nav-link" data-scroll-target="#the-end">The End</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/qc.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/assemblies.html">Assembly and Co-assembly of Metagenomic Raw Reads</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Assembly and Co-assembly of Metagenomic Raw Reads</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Germana Baldi <a href="mailto:germanab@ebi.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-1719-5206" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="www.ebi.ac.uk">
+            EMBL-EBI
+            </a>
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Sonya Ochkalova <a href="mailto:sofia@ebi.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="www.ebi.ac.uk">
+            EMBL-EBI
+            </a>
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="learning-objectives" class="level1">
+<h1>Learning Objectives</h1>
+<p>In the following exercises, you will learn how to perform metagenomic assembly and co-assembly, and explore the output. We will visualize assembly graphs with <code>Bandage</code>, examine assembly statistics with <code>assembly_stats</code>, and align contigs against the BLAST database.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Metagenomic assembly can take hours or even days to complete on real samples, often requiring days of CPU time and hundreds of gigabytes of memory. In this practical, we will work with small toy datasets to demonstrate the assembly process.</p>
+</div>
+</div>
+<p>Once you have quality-filtered your sequencing reads, you may want to perform <em>de novo</em> assembly in addition to, or as an alternative to, read-based analyses. The first step is to assemble your sequences into contigs. There are many tools available for this purpose, such as <code>metaSPAdes</code>, <code>IDBA-UD</code>, <code>metaMDBG</code>, and <code>MEGAHIT</code>.</p>
+<p>We generally use <code>metaSPAdes</code>, as it typically yields the best contig size statistics (i.e., more contiguous assembly) and has been shown to capture high degrees of community diversity (<a href="https://europepmc.org/article/MED/28099457">Vollmers, et al.&nbsp;PLOS One 2017</a>). However, you should consider the pros and cons of different assemblers based on your specific needs. Key factors include not only assembly accuracy but also computational overhead, which varies significantly between tools.</p>
+<p>For example, <code>metaSPAdes</code> requires substantial memory, especially for very diverse samples with large amounts of sequence data (e.g., soil samples). In such cases, more memory-efficient alternatives like <code>MEGAHIT</code> may be preferable.</p>
+<p>In the following practicals, we will demonstrate the use of <code>metaSPAdes</code> on a small short-read sample, <code>Flye</code> on a long-read sample, and <code>MEGAHIT</code> for co-assembly.</p>
+</section>
+<section id="before-we-start" class="level1">
+<h1>Before we start…</h1>
+<p>First, let’s navigate to the root working directory where we will run all analyses:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The raw reads for assembly generation can be found in the <code>data_dir/short_reads</code>, <code>data_dir/long_reads</code> and <code>data_dir/co_assembly_short_reads</code> folders.</p>
+</section>
+<section id="short-read-assemblies-metaspades" class="level1">
+<h1>Short-read assemblies: metaSPAdes</h1>
+<p>For short reads, we will use <a href="https://github.com/ablab/spades">SPAdes - St.&nbsp;Petersburg genome Assembler</a>, a suite of assembly tools designed for different types of sequencing data. For metagenomic data, we will use the metagenomic-specific mode of <code>SPAdes</code> called <code>metaSPAdes</code>.</p>
+<p><code>metaSPAdes</code> offers many options to fit different requirements, which depend primarily on the properties of data you want to assemble and desired result. Keep in mind that options differ between tools (e.g., <code>spades.py</code> vs <code>metaspades.py</code>).</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To explore available options of <code>metaSPAdes</code>, type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metaspades.py</span> <span class="at">-h</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What <code>metaSPAdes</code> command should be used for the case described below?</p>
+<p>You need to assemble paired-end reads from the <code>short_reads</code> folder and save the output to a folder named <code>assembly_spades</code>. Limit resource usage to 5 GB of memory and 4 threads. By default, <code>metaSPAdes</code> performs an error correction on the input reads before assembling. Since provided reads have already been polished, you can run the assembler without the error correction step.</p>
+<p>Review the help output from <code>metaspades.py -h</code> and select the appropriate options to build your first assembly command.</p>
+</div>
+</div>
+<details>
+<summary>
+Click to see solution
+</summary>
+<p>The correct <code>metaSPAdes</code> parameters are:</p>
+<ul>
+<li><code>-1 short_reads/input_1.fastq</code>: path to forward reads</li>
+<li><code>-2 short_reads/input_2.fastq</code>: path to reverse reads</li>
+<li><code>-o assembly_spades</code>: output folder name</li>
+<li><code>-t 4</code>: use 4 threads</li>
+<li><code>-m 5</code>: limit memory usage to 5 Gb</li>
+<li><code>--only-assembler</code>: skips the error correction step</li>
+</ul>
+</details>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Please do not execute the assembly command on your machine.</strong> Execution time would overall cover half of the session (metaSPAdes alone would take ~15 minutes). Moreover, the VMs have limited resources that barely meet <code>metaSPAdes</code>’ requirements, and running multiple assemblies simultaneously could overload the system.</p>
+</div>
+</div>
+<p>All output files (including intermediate ones) can be found in the <code>assembly_spades</code> folder.</p>
+<p><code>contigs.fasta</code> and <code>scaffolds.fasta</code> are typically used for downstream analyses (e.g., binning and MAG generation). We will focus on <code>contigs.fasta</code> for this session, which is the same file you will use in the upcoming practicals.</p>
+<p>Without going all the way to MAG generation, you can sometimes identify strong taxonomic signals at the assembly stage using a quick <code>blastn</code> alignment.</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">blast</a> website and choose Nucleotide BLAST (<code>blastn</code>). Take the first 100 lines of the sequence by copying the output of the command below:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 101 assembly_spades/contigs.fasta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Leave all other options as default on the search page and run BLAST search. The resulting output will have the following format (but will look a bit better than this): <img src="assemblies/blast_corrupted.jpg" class="img-fluid" alt="Blast-n"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Based on the top BLAST hits, what species does this contig appear to originate from?</p>
+<p>This read dataset was sequenced from a human oral sample. Is this organism commonly found in the human oral microbiome?</p>
+</div>
+</div>
+<p>As mentioned in the theory session, you will need different statistics to evaluate the quality of your assembly.</p>
+<p><code>assembly_stats</code> is a tool that produces two simple tables in JSON format with various measures, including N10 to N50, GC content, longest contig length, and more. The first section of the JSON output corresponds to scaffolds, while the second corresponds to contigs.</p>
+<p>N50 is a metric used to describe the quality of assembled genomes that are fragmented in contigs of different length. It represents the sequence length of the shortest contig at 50% of the total assembly length (when contigs are sorted from longest to shortest).</p>
+<p>A (hopefully) clarifying picture to understand N50, where N50==60: <img src="assemblies/N50.png" style="width:70.0%;height:70.0%" alt="N50"></p>
+<p>Essentially, a higher N50 value indicates a better assembly, as it means that longer contigs cover half of the final assembly, making it less fragmented. However, keep in mind that using N50 to compare the quality of two metagenomes only makes sense if the metagenomes are similar.</p>
+<p>Note that other metrics follow the same principle: for example, N90 represents the shortest contig length needed to cover 90% of the metagenome.</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can run <code>assembly_stats</code> with the following command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">assembly_stats</span> assembly_spades/scaffolds.fasta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>You will see a summary output with statistics for your assembly. In lines with the format <code>N50 = YYY, n = Z</code>, the value <code>n</code> represents the number of sequences needed to cover 50% of the total assembly length. A “gap” is any consecutive run of Ns (undetermined nucleotide bases) of any length. <code>N_count</code> is the total number of Ns across the entire assembly.</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What are the lengths of the longest and shortest contigs?</p>
+<p>What is the N50 of the assembly? Considering that the input consisted of ~150 bp paired-end reads, what do these statistics tell you about the quality of the assembly?</p>
+</div>
+</div>
+<p>Another useful tool for assessing metagenomic assemblies is <code>QUAST</code>, which provides deeper insights into assembly statistics — such as indel frequency and misassembly rate — in just a short amount of time.</p>
+</section>
+<section id="long-read-assemblies-flye" class="level1">
+<h1>Long-read assemblies: Flye</h1>
+<p>For long reads, we will use <a href="https://github.com/fenderglass/Flye">Flye</a>, an assembler designed for single-molecule sequencing reads such as those produced by PacBio and Oxford Nanopore Technologies (ONT). Like <code>SPAdes</code>, <code>Flye</code> performs both reads error correction and assembly. It compensates for the high base-calling error rate in long reads by comparing multiple reads that cover the same genomic region.</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can view all <code>Flye</code> parameters using the help command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">-h</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What <code>Flye</code> command should be used for the case described below?</p>
+<p>You need to assemble ONT reads from the <code>long_reads</code> folder using 4 threads and save the output to a folder named <code>assembly_flye_meta</code>. The provided ONT reads are raw and require error correction. Also, keep in mind that by default, <code>Flye</code> performs an isolate assembly, but in this case, we want to perform a metagenomic assembly.</p>
+</div>
+</div>
+<details>
+<summary>
+Click to see solution
+</summary>
+<p>The correct <code>Flye</code> parameters are:</p>
+<ul>
+<li><code>--nano-raw long_reads/ONT_input.fastq</code>: assemble input reads with error correction. Depending on data quality, other presets can be used. For example, if reads have been pre-polished and adapters removed, use <code>--nano-corr</code>. The <code>--nano-hq</code> option should be reserved for high-quality data. The same logic applies to the <code>pacbio</code> options.</li>
+<li><code>--threads 4</code>: number of threads</li>
+<li><code>--out-dir assembly_flye_meta</code>: output folder</li>
+<li><code>--meta</code>: enable metagenome mode</li>
+</ul>
+</details>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As before, we recommend to <strong>NOT launch this command during this session</strong>. Each run takes around 5 minutes and would fully occupy all available CPU cores.</p>
+</div>
+</div>
+<p>The output files generated by <code>Flye</code> can be found in the <code>assembly_flye_meta</code> folder.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To further investigate the effect of the <code>--meta</code> flag, we also generated another assembly without it. The output of that run can be found in the <code>assembly_flye</code> folder.</p>
+</div>
+</div>
+</section>
+<section id="diving-into-assembly-graphs" class="level1">
+<h1>Diving Into Assembly Graphs</h1>
+<p>Let’s take a first look at what assembly graphs actually look like. <code>Bandage</code> (short for <em>Bioinformatics Application for Navigating De novo Assembly Graphs Easily</em>) is a program that creates interactive visualisations of assembly graphs. It can be used to explore different parts of the graph — for example, rRNA genes, SNPs, or inspect specific genomic regions. With it, you can zoom and pan around the graph, search for sequences, and perform many other operations.</p>
+<p>In this exercise, we will use <code>Bandage</code> to compare the assembly graphs we generated with <code>Flye</code> and <code>metaSPAdes</code>. We will start with <code>metaSPAdes</code>.</p>
+<p>When working with <code>metaSPAdes</code> output, it is usually recommended to open the file <code>assembly_graph.fastg</code> in <code>Bandage</code>. However, our assembly is quite fragmented, so in this case we will load <code>assembly_graph_after_simplification.gfa</code> instead.</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Execute the following command to lauch the <code>Bandage</code> application:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span> <span class="kw">&amp;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the <code>Bandage</code> graphical interface, perform the following steps:</p>
+<ol type="1">
+<li>Go to <strong>File → Load graph</strong></li>
+<li>Navigate to <code>/home/training/Assembly/assembly_spades</code></li>
+<li>Select and open the file <code>assembly_graph_after_simplification.gfa</code></li>
+</ol>
+<p>Once the file is loaded, you need to draw the graph. To do so, in the <strong>Graph drawing</strong> panel on the left side perform the following:</p>
+<ol type="1">
+<li>Set Scope to <code>Entire graph</code></li>
+<li>Click on <code>Draw graph</code></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Can you identify any large or complex regions within the <code>metaSPAdes</code> graph? If so, what do they look like?</p>
+</div>
+</div>
+<p>Now, open another instance of <code>Bandage</code> as you did before, and load <code>assembly_flye/assembly_graph.gfa</code>.</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How does the <code>Flye</code> assembly differ from the one generated with <code>metaSPAdes</code>?</p>
+</div>
+</div>
+<p>As mentioned earlier, we ran <code>Flye</code> both with and without the <code>--meta</code> flag on <code>long_reads/ONT_input.fastq</code>. You can now repeat the same visualization procedure for the other <code>Flye</code> graph and compare the results.</p>
+<p>Notice how the metagenomic assembly mode affects the graph structure compared to the default isolate assembly mode.</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This ONT dataset originates from run <strong>ERR3775163</strong>, which can be explored on the <a href="https://www.ncbi.nlm.nih.gov/sra/ERR3775163">NCBI browser</a>. Take a look at its metadata.</p>
+<p>Can you figure out why the assembly graph from the run without <code>--meta</code> looks better than the one with <code>--meta</code>?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Extra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try running a BLAST search for the first 100 lines of the first contig of the long-read assembly. (You won’t be able to BLAST the entire contigs as they are too long.) Do the results match the metadata you found on ENA?</p>
+</div>
+</div>
+</section>
+<section id="co-assemblies-megahit" class="level1">
+<h1>Co-assemblies: MEGAHIT</h1>
+<p>In the next part of this exercise, we will explore co-assembly of multiple datasets. Remember that co-assembly produces meaningful results only when applied to <em>similar</em> samples. This is true for the raw reads we co-assembled here — they all originate from a single sample that was split for this exercise.</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Explore <code>MEGAHIT</code> parameters using the help command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">megahit</span> <span class="at">-h</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As before, we recommend not to launch <code>MEGAHIT</code> command this time.</p>
+</div>
+</div>
+<p>You will find <code>MEGAHIT</code> output files in the <code>co_assembly_short_reads</code> folder.</p>
+<p>The following parameters were used to generate the co-assemblies:</p>
+<ul>
+<li><code>-1 [forward files comma-separated]</code></li>
+<li><code>-2 [reverse files comma-separated]</code></li>
+<li><code>-o co_assembly_megahit</code> output folder</li>
+<li><code>-t 4</code> number of threads</li>
+<li><code>--k-list 23,51,77</code> list of k-mer lengths</li>
+</ul>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compare the co-assembly contigs file with the single-assembly one using the <code>assembly_stats</code> tool.</p>
+<p>How does this assembly differ from the one generated earlier with <code>metaSPAdes</code>? Which one do you think is better, and why?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Extra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You might notice that <code>MEGAHIT</code> does not generate assembly graphs by default. To create one, run the following command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">megahit_toolkit</span> contig2fastg 77 co_assembly_megahit/final.contigs.fa <span class="op">&gt;</span> co_assembly_megahit/final.contigs.fastg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Explore the graph in <code>Bandage</code>.</p>
+<p>The datasets used for the <code>metaSPAdes</code> assembly and the <code>MEGAHIT</code> co-assembly originate from the same source. Do you observe any relevant differences between the two assembly graphs?</p>
+</div>
+</div>
+</section>
+<section id="the-end" class="level1">
+<h1>The End</h1>
+<p>Fantastic work — you’ve reached the end of the practical! 🎉</p>
+<p>You’ve explored different assemblers, compared their outputs, and learned how to visualise and interpret assembly graphs — great progress toward mastering metagenomics.</p>
+<p>Take a moment to reflect on what you’ve learned today.<br>
+If anything remains unclear, don’t hesitate to ask questions — there are no silly questions!</p>
+<p>If you still have some spare time, take a look at the sections labelled <strong>“Extra.”</strong> They contain optional exercises for curious students who want to explore further.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>Apache 2.0</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/plants-breeding\.mgnify\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../sessions/amplicon.html" class="pagination-link" aria-label="Amplicon stuff">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Amplicon stuff</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../sessions/metagenomics.html" class="pagination-link" aria-label="Metagenomics stuff">
+        <span class="nav-page-text">Metagenomics stuff</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
