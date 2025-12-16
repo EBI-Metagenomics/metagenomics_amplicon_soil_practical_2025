@@ -12,4 +12,4 @@ These sessions will cover different insights and tools used for metagenomics and
 
 The slides of reference can be found at (insert link here)
 
-![](static/mgnify.png)
+![](static/mgnify.png){width=30%}
