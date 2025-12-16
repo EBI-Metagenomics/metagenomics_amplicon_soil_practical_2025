@@ -1,8 +1,8 @@
 ---
-title: "Metagenomics stuff"
+title: "Metagenomics practical"
 date: 2025-12-19
 license: "Apache 2.0"
-order: 2
+order: 1
 author:
   - name: Germana Baldi
     orcid: 0000-0003-1719-5206
@@ -11,6 +11,7 @@ author:
       - name: EMBL-EBI
         url: www.ebi.ac.uk
   - name: Tatiana Gurbich
+    orcid: 0000-0002-7537-8871
     email: tgurbich@ebi.ac.uk
     affiliation: 
       - name: EMBL-EBI
