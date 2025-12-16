@@ -10,7 +10,7 @@
 <meta name="author" content="Tatiana Gurbich">
 <meta name="dcterms.date" content="2025-12-19">
 
-<title>Amplicon stuff – Metagenomics and amplicon data at MGNify (2025)</title>
+<title>Amplicon practical – Metagenomics and amplicon data at MGNify (2025)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../sessions/assemblies.html" rel="next">
-<link href="../sessions/qc.html" rel="prev">
+<link href="../sessions/metagenomics.html" rel="prev">
 <link href="../static/mgnify_logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -121,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/qc.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon stuff</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/metagenomics.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon practical</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -152,32 +151,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sessions/qc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quality control and filtering of the raw sequence files</span></a>
+  <a href="../sessions/metagenomics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metagenomics practical</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/amplicon.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Amplicon stuff</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../sessions/assemblies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assembly and Co-assembly of Metagenomic Raw Reads</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../sessions/metagenomics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Metagenomics stuff</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../sessions/genome_uploader.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The genome_uploader: tutorial</span></a>
+ <span class="menu-text">Amplicon practical</span></a>
   </div>
 </li>
       </ul>
@@ -196,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#download-an-amplicon-sample" id="toc-download-an-amplicon-sample" class="nav-link" data-scroll-target="#download-an-amplicon-sample">Download an amplicon sample</a></li>
   <li><a href="#fastqc" id="toc-fastqc" class="nav-link" data-scroll-target="#fastqc">FastQC</a></li>
-  <li><a href="#convert-fastq-to-fasta" id="toc-convert-fastq-to-fasta" class="nav-link" data-scroll-target="#convert-fastq-to-fasta">Convert fastq to fasta</a></li>
+  <li><a href="#performing-taxonomic-annotation-of-your-amplicon-data" id="toc-performing-taxonomic-annotation-of-your-amplicon-data" class="nav-link" data-scroll-target="#performing-taxonomic-annotation-of-your-amplicon-data">Performing taxonomic annotation of your amplicon data</a></li>
   <li><a href="#mapseq" id="toc-mapseq" class="nav-link" data-scroll-target="#mapseq">MAPseq</a></li>
   <li><a href="#kraken2" id="toc-kraken2" class="nav-link" data-scroll-target="#kraken2">Kraken2</a>
   <ul class="collapse">
@@ -211,9 +192,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/qc.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon stuff</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/metagenomics.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon practical</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Amplicon stuff</h1>
+<h1 class="title">Amplicon practical</h1>
 </div>
 
 
@@ -232,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
           </p>
       </div>
     <div class="quarto-title-meta-contents">
-    <p class="author">Tatiana Gurbich <a href="mailto:tgurbich@ebi.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+    <p class="author">Tatiana Gurbich <a href="mailto:tgurbich@ebi.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-7537-8871" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -288,33 +269,102 @@ ul.task-list li input[type="checkbox"] {
 <p>Look up <code>FastQC</code> in the list of tools</p>
 <p>Fastq files contain the raw sequence returned by the sequencer, including quality values associated to every base pair.</p>
 <p>FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="amplicon/fastqc_summary.png" class="img-fluid figure-img"></p>
+<figcaption>FastQC summary</figcaption>
+</figure>
+</div>
 <p>Per base sequence quality is quite decent for all reads in the sample.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_base_quality.png" class="img-fluid figure-img"></p>
-<figcaption>fastqc_1</figcaption>
+<figcaption>FastQC base quality</figcaption>
 </figure>
 </div>
+<p>For each position, a BoxWhisker-type plot is drawn:</p>
+<ul>
+<li>The central red line is the median value.</li>
+<li>The yellow box represents the inter-quartile range (25-75%).</li>
+<li>The upper and lower whiskers represent the 10% and 90% points.</li>
+<li>The blue line represents the mean quality.</li>
+</ul>
+<p>The y-axis on the graph shows the quality scores. The higher the score, the better the base call. The background of the graph divides the y-axis into very good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red).</p>
 <p>You can also look up the distribution of the average quality per read in the sample</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_sequence_quality.png" class="img-fluid figure-img"></p>
-<figcaption>fastqc_2</figcaption>
+<figcaption>FastQC sequence quality</figcaption>
 </figure>
 </div>
 <p>You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance to the same base position containing the same base.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_base_content.png" class="img-fluid figure-img"></p>
-<figcaption>fastqc_3</figcaption>
+<figcaption>FastQC base content</figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The DNA composition looks very even until nucleotide ~10, and after that, there are distinct differences. Why do you think that is?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The first bases in this sample are primer sequence. In amplicon libraries, all reads start at (nearly) the same position because PCR primers define the amplicon boundaries. This means that the same primer sequence (or its reverse complement) is present at the start of almost every read, leading to a highly uniform per-base sequence content. After nucleotide ~10, the biological target sequence begins.</p>
+</div>
+</div>
+</div>
+<p>There are a few other summaries in this report you can look into. You may notice that a few of these summaries are labelled as failed (red cross), but this is not an error for amplicon sequences, as we are mostly targeting repeated sequences, and duplication/GC content expectations differ a lot from what a metagenomic sample would yield.</p>
 </section>
-<section id="convert-fastq-to-fasta" class="level2">
-<h2 class="anchored" data-anchor-id="convert-fastq-to-fasta">Convert fastq to fasta</h2>
+<section id="performing-taxonomic-annotation-of-your-amplicon-data" class="level2">
+<h2 class="anchored" data-anchor-id="performing-taxonomic-annotation-of-your-amplicon-data">Performing taxonomic annotation of your amplicon data</h2>
+<p>In the following section we will compare results from two different tools that we will launch on your amplicon data: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6883579/"><code>Kraken2</code></a> and <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5860325/"><code>MAPseq</code></a>. You will observe how the choice in tool and reference database can change results drastically.</p>
+<div class="callout callout-style-default callout-step callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Step</span>Convert fastq to fasta
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>This step is needed to proceed with downstream analyses. Fasta files are fastq files deprived of their quality values.</p>
 <p>Look up <code>FASTQ to FASTA</code> in the list of tools</p>
-<p>Beware of pointing to the correct fastq.gz file.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Beware of pointing to the correct file
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Analyses names can be a bit confusing in galaxy - to remember which files you are suppoed to use in downstream anallyses it is recommended to rename them by pressing the pencil symbol on the analysis, and then editing the Name to something you’ll remember easily.</p>
+</div>
+</div>
 </section>
 <section id="mapseq" class="level2">
 <h2 class="anchored" data-anchor-id="mapseq">MAPseq</h2>
@@ -326,7 +376,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="kraken2" class="level2">
 <h2 class="anchored" data-anchor-id="kraken2">Kraken2</h2>
 <p>CHECK WHAT IS THE FASTEST, SILVA 138 16S or SILVA 2022</p>
-<p>25: 2022-02-02T162959Z_silva_kmer-len_35_minimizer-len_31_minimizer-spaces_6_load-factor_0.7 26: 16S_SILVA138_k2db2021-08</p>
+<p>25: 2022-02-02T162959Z_silva_kmer-len_35_minimizer-len_31_minimizer-spaces_6_load-factor_0.7</p>
+<p>26: 16S_SILVA138_k2db2021-08</p>
 <p>Look up <code>Kraken2</code> in the list of tools, let’s launch it with a default set of parameters, but only allowing for the best hit to be used. In a separate session you could change these parameters and aim for better accuracy, bearing in mind that execution time might increase.</p>
 <section id="kraken-report-krakentools" class="level3">
 <h3 class="anchored" data-anchor-id="kraken-report-krakentools">Kraken-report + Krakentools</h3>
@@ -362,13 +413,35 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>Look at the difference in annotation numbers.</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Notice the contamination on MAPseq’s output. Thinking about the parameters that we used, do you understand why this was picked up by MAPseq, but not by Kraken2?</p>
-<details>
-<summary>
-See the answer
-</summary>
-<p>Kraken2 was only focused on a bacterial database, while we used a generic SSU database for MAPseq.</p>
-</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Kraken2 was only focused on a bacterial database, while we used a generic SSU database for MAPseq. Also this shows probably how much contamination there was in the initil sample, underlying how important it is to decontaminate your sample beforehand.</p>
+</div>
+</div>
+</div>
 <p>Let’s focus on the bacterial annotations only.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -784,14 +857,11 @@ See the answer
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../sessions/qc.html" class="pagination-link" aria-label="Quality control and filtering of the raw sequence files">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Quality control and filtering of the raw sequence files</span>
+      <a href="../sessions/metagenomics.html" class="pagination-link" aria-label="Metagenomics practical">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Metagenomics practical</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../sessions/assemblies.html" class="pagination-link" aria-label="Assembly and Co-assembly of Metagenomic Raw Reads">
-        <span class="nav-page-text">Assembly and Co-assembly of Metagenomic Raw Reads</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
