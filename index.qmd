@@ -1,11 +1,15 @@
 ---
-title: "Metagenomics bioinformatics at MGnify (2025)"
+title: "Metagenomics and amplicon data at MGnify (2025)"
 ---
 
-This is the course material for the [Metagenomics bioinformatics at MGnify course (2025)](https://www.ebi.ac.uk/training/events/metagenomics-bioinformatics-mgnify/).
+This is the course material for the metagenomics and amplicon introductory session hosted by MGnify at the plants breeding workshop at CIHEAM.
 
 # Overview
 
-Gain knowledge of the tools, processes and analysis approaches used in the field of metagenomics.
+Gain knowledge of the data and tools used in the field of metagenomics and amplicon studies.
 
-This course will cover the metagenomics data analysis workflow from the point of newly generated sequence data. Participants will explore the use of publicly available resources and tools to manage, share, analyse and interpret metagenomics data. The content will include issues of data quality control and how to submit to public repositories. While sessions will detail marker-gene and whole-genome shotgun (WGS) approaches; the primary focus will be on assembly-based approaches. Discussions will also explore considerations when assembling genome data, the analysis that can be carried out by MGnify on such datasets, and what downstream analysis options and tools are available
+These sessions will cover different insights and tools used for metagenomics and amplicon data analysis workflow from the point of newly generated sequence data. Participants will explore the use of publicly available resources and tools to manage, analyse and interpret metagenomics and amplicon data. The content will include issues of data quality control and how to submit to public repositories. At the end of this session, participants will be familiary with the galaxy and MGnify platforms, they will have gained insights on how impactful the choice in reference database can be, and be able to perform a first evaluation of amplicon and metagenomics datasets. 
+
+The slides of reference can be found at (insert link here)
+
+![](static/mgnify.png)
