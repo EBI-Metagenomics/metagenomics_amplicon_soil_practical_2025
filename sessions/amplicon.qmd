@@ -11,6 +11,7 @@ author:
       - name: EMBL-EBI
         url: www.ebi.ac.uk
   - name: Tatiana Gurbich
+    orcid: 0000-0002-7537-8871
     email: tgurbich@ebi.ac.uk
     affiliation: 
       - name: EMBL-EBI
@@ -51,25 +52,58 @@ Fastq files contain the raw sequence returned by the sequencer, including qualit
 
 FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference. 
 
+![FastQC summary](amplicon/fastqc_summary.png)
+
 Per base sequence quality is quite decent for all reads in the sample.
 
-![fastqc_1](amplicon/fastqc_base_quality.png)
+![FastQC base quality](amplicon/fastqc_base_quality.png)
+
+For each position, a BoxWhisker-type plot is drawn:
+
+- The central red line is the median value.
+- The yellow box represents the inter-quartile range (25-75%).
+- The upper and lower whiskers represent the 10% and 90% points.
+- The blue line represents the mean quality.
+
+The y-axis on the graph shows the quality scores. The higher the score, the better the base call. The background of the graph divides the y-axis into very good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red). 
 
 You can also look up the distribution of the average quality per read in the sample
 
-![fastqc_2](amplicon/fastqc_sequence_quality.png)
+![FastQC sequence quality](amplicon/fastqc_sequence_quality.png)
 
 You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance to the same base position containing the same base. 
 
-![fastqc_3](amplicon/fastqc_base_content.png)
+![FastQC base content](amplicon/fastqc_base_content.png)
 
-## Convert fastq to fasta
+::: {.callout-question .callout-tip}
+The DNA composition looks very even until nucleotide ~10, and after that, there are distinct differences. Why do you think that is?
+::: 
+::: {.callout-tip collapse="true"}
+## Answer
+The first bases in this sample are primer sequence. In amplicon libraries, all reads start at (nearly) the same position because PCR primers define the amplicon boundaries. This means that the same primer sequence (or its reverse complement) is present at the start of almost every read, leading to a highly uniform per-base sequence content. After nucleotide ~10, the biological target sequence begins. 
+:::
+
+There are a few other summaries in this report you can look into. You may notice that a few of these summaries are labelled as failed (red cross), but this is not an error for amplicon sequences, as we are mostly targeting repeated sequences, and duplication/GC content expectations differ a lot from what a metagenomic sample would yield. 
+
+## Performing taxonomic annotation of your amplicon data
+
+In the following section we will compare results from two different tools that we will launch on your amplicon data: [`Kraken2`](https://pmc.ncbi.nlm.nih.gov/articles/PMC6883579/) and [`MAPseq`](https://pmc.ncbi.nlm.nih.gov/articles/PMC5860325/). You will observe how the choice in tool and reference database can change results drastically.
+
+::: {.callout-step .callout-tip}
+# Convert fastq to fasta
 
 This step is needed to proceed with downstream analyses. Fasta files are fastq files deprived of their quality values. 
 
 Look up `FASTQ to FASTA` in the list of tools
 
-Beware of pointing to the correct fastq.gz file. 
+:::
+
+::: {.callout-caution}
+# Beware of pointing to the correct file
+
+Analyses names can be a bit confusing in galaxy - to remember which files you are suppoed to use in downstream anallyses it is recommended to rename them by pressing the pencil symbol on the analysis, and then editing the Name to something you'll remember easily. 
+
+:::
 
 ## MAPseq
 
@@ -86,6 +120,7 @@ Among the available options, there is the possibility of creating a table suitab
 CHECK WHAT IS THE FASTEST, SILVA 138 16S or SILVA 2022
 
 25: 2022-02-02T162959Z_silva_kmer-len_35_minimizer-len_31_minimizer-spaces_6_load-factor_0.7
+
 26: 16S_SILVA138_k2db2021-08
 
 Look up `Kraken2` in the list of tools, let's launch it with a default set of parameters, but only allowing for the best hit to be used. In a separate session you could change these parameters and aim for better accuracy, bearing in mind that execution time might increase. 
@@ -112,15 +147,13 @@ Open the two krona plots you just generated. They should look like these two:
 
 Look at the difference in annotation numbers. 
 
-Notice the contamination on MAPseq's output. Thinking about the parameters that we used, do you understand why this was picked up by  MAPseq, but not by Kraken2?
-
-<details>
-
-<summary>See the answer</summary>
-
-Kraken2 was only focused on a bacterial database, while we used a generic SSU database for MAPseq. 
-
-</details>
+::: {.callout-question .callout-tip}
+Notice the contamination on MAPseq's output. Thinking about the parameters that we used, do you understand why this was picked up by MAPseq, but not by Kraken2?
+::: 
+::: {.callout-tip collapse="true"}
+## Answer
+Kraken2 was only focused on a bacterial database, while we used a generic SSU database for MAPseq. Also this shows probably how much contamination there was in the initil sample, underlying how important it is to decontaminate your sample beforehand. 
+:::
 
 Let's focus on the bacterial annotations only. 
 
