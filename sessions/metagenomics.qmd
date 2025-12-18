@@ -19,29 +19,49 @@ author:
 ---
 --------------------------------------------------
 
-# Learning Objectives
+### Learning Objectives
+- Know how to assess the quality of metagenomic data
+- Be able to identify taxa present in the sample and visualise them in a Krona plot
+
+--------------------------------------------------
 
 ### Set up your Galaxy account and workspace
 
-#### Steps:
-1. Navigate to: [Galaxy](https://usegalaxy.org/)
+#### ![icon](metagenomics/footprints.png){width=35px} Steps:
+1. Navigate to: [Galaxy](https://usegalaxy.org/){target="_blank"}
 2. In the upper right corner click on "Register" and go through the steps **(skip if you already have an account)**.\
 **Important**: make sure you activate your account by clicking the link Galaxy will send to your email address.
 3. Create and name your Galaxy history:
-    - Find the history panel on the right-hand side and click on the "+" to create a new history (its default name is Unnamed history)\
+    - Find the history panel on the right-hand side and click on the "+" to create a new history (its default name will be "Unnamed history")\
     ![Galaxy history](metagenomics/galaxy-history.png){width=200px style="border:1px solid grey;"}\
     \
     - Click on the name and change it to "Metagenomics practical". It should look like this:\
     ![Galaxy history renamed](metagenomics/galaxy-history-renamed.png){width=200px style="border:1px solid grey;"}\
 
+--------------------------------------------------
+
 ### Download data
-In today's practical, we will be working with two samples from tomato rhizosphere: [SRR15517665](https://www.ebi.ac.uk/ena/browser/view/SRR15517665) and [SRR15517666](https://www.ebi.ac.uk/ena/browser/view/SRR15517666). The data have been manipulated in the following ways:
-Start by downloading the FASTQ files to Galaxy.
+![icon](metagenomics/read.png){width=35px}  In today's practical, we will be working with two samples from tomato rhizosphere: [SRR15517665](https://www.ebi.ac.uk/ena/browser/view/SRR15517665){target="_blank"} and [SRR15517666](https://www.ebi.ac.uk/ena/browser/view/SRR15517666){target="_blank"}. We will start by taking a look at just one FASTQ file to assess its quality. In real life, you would do this for all four files (there are two FASTQ files per sample since this is paired-end sequencing).\
 
-While the data are downloading, you will see the process in your history appear in orange and with a spinning wheel. This will be the case for all processes that are in progress in today's practical. When processes complete, they turn green.
+#### ![icon](metagenomics/footprints.png){width=35px} Steps:
+1. Locate and click on the Upload button in Galaxy (upper left corner of the page):\
+![Galaxy history](metagenomics/galaxy-upload.png){width=300px style="border:1px solid grey;"}\
 
+2. A window will pop up. Click on the "Paste/fetch data" (shown in the image below):\
+![Galaxy history](metagenomics/galaxy-upload-1.png){width=500px style="border:1px solid grey;"}\
 
-Run FastQC on one file
-Take a look at the FastQC report (Webpage)
+3. Paste the following link in the window and click Start: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR155/065/SRR15517665/SRR15517665_1.fastq.gz \
+![Galaxy history](metagenomics/galaxy-upload-2.png){width=500px style="border:1px solid grey;"}\
+The pop-up window will turn green, and you can now close it.\
+The upload will take a few minutes. While the data are uploading, you will see the process in your history appear in orange and with a spinning wheel. This will be the case for all processes that are in progress in today's practical. When processes complete, they turn green.\
+![Galaxy history](metagenomics/uploading.png){width=300px style="border:1px solid grey;"}\
 
- seqtk_mergefa - to make one fasta for input
+4. When the upload is complete and the process has turned green, you can click on it and see your data preview: \
+![Galaxy history](metagenomics/data-sneakpeak.png){width=300px style="border:1px solid grey;"}\
+
+--------------------------------------------------
+
+### Check data quality
+![icon](metagenomics/read.png){width=35px} Before we proceed with the analysis, we should check that the data quality is OK. Normally, we would do this for all FASTQ files but for the purposes of this exercise we will try with one. We will be using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/){target="_blank"}.
+
+#### ![icon](metagenomics/footprints.png){width=35px} Steps:
