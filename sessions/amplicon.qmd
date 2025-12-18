@@ -2,7 +2,7 @@
 title: "Amplicon practical"
 date: 2025-12-19
 license: "Apache 2.0"
-order: 2
+order: 1
 author:
   - name: Germana Baldi
     orcid: 0000-0003-1719-5206
@@ -40,21 +40,25 @@ Create an account (give students 5 minutes)
 
 Log-in to your account.
 
-Upload the amplicon sample you downloaded.
+In the top-left corner, find the upload button, and submit the amplicon sample you downloaded.
 
-![upload](amplicon/file_upload.png)
+![](amplicon/galaxy_upload_arrow.png)
 
-## FastQC
+## Quality assessment with FastQC
 
-Look up `FastQC` in the list of tools
+Assessing datasets quality is an essential step if we aim to obtain a meaningful downstream analysis. We can do this by looking at the raw sequence, which is usually stored in a FASTQ file. The FASTQ format is a text-based format that contains the raw sequence returned by the sequencer, and quality values associated to every base pair. 
 
-Fastq files contain the raw sequence returned by the sequencer, including quality values associated to every base pair. 
+FastQC is tool allowing you to observe sequence quality and content quickly.
 
-FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference. 
+Look up `FastQC` in the list of tools on the top right corner, and launch it on the sequences that you uploaded.
+
+FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference. FastQC provides information on various parameters, such as the range of quality values across all bases at each position.
+
+The first section of a FastQC report is a summary for all quality checkes tested by the tool. 
 
 ![FastQC summary](amplicon/fastqc_summary.png)
 
-Per base sequence quality is quite decent for all reads in the sample.
+It looks like not all the checks passed, let's look at a few of these more in detail.
 
 ![FastQC base quality](amplicon/fastqc_base_quality.png)
 
@@ -67,11 +71,19 @@ For each position, a BoxWhisker-type plot is drawn:
 
 The y-axis on the graph shows the quality scores. The higher the score, the better the base call. The background of the graph divides the y-axis into very good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red). 
 
-You can also look up the distribution of the average quality per read in the sample
+::: {.callout-question .callout-tip}
+Looking at the plot above, what does the quality of the sample look like?
+::: 
+::: {.callout-tip collapse="true"}
+## Answer
+The majority of the base sequence quality values falls into the good-quality section of the graph, and only the lower side of the whiskers is sometimes falling in the red region.
+:::
+
+You can also look up the distribution of the average quality per read in the sample:
 
 ![FastQC sequence quality](amplicon/fastqc_sequence_quality.png)
 
-You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance to the same base position containing the same base. 
+You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance of the same base position containing the same base. 
 
 ![FastQC base content](amplicon/fastqc_base_content.png)
 
@@ -101,60 +113,72 @@ Look up `FASTQ to FASTA` in the list of tools
 ::: {.callout-caution}
 # Beware of pointing to the correct file
 
-Analyses names can be a bit confusing in galaxy - to remember which files you are suppoed to use in downstream anallyses it is recommended to rename them by pressing the pencil symbol on the analysis, and then editing the Name to something you'll remember easily. 
+Analyses names can be a bit confusing in galaxy - to remember which files you are supposed to use in downstream anallyses it is recommended to rename them by pressing the pencil symbol on the analysis, and then editing the Name to something you'll remember easily. 
 
 :::
 
-## MAPseq
+### MAPseq
 
-Look up `MAPseq` in the list of tools
+MAPseq provides a fast and accurate sequence read mapping against hierarchically clustered and annotated reference sequences.
 
-Let's select the SSU database, as this was the targeted subunit, and default parameters.
+From the MAPseq repo:
 
-Separately we decided to run LSU and ITS databases, but the yield was very low, as expected. 
+``` 
+MAPseq is a set of fast and accurate sequence read classification tools designed 
+to assign taxonomy and OTU classifications to ribosomal RNA sequences. This is 
+done by using a reference set of full-length ribosomal RNA sequences for which 
+known taxonomies are known, and for which a set of high quality OTU clusters 
+has been previously generated. For each read, the best guess and correspoding 
+confidence in the assignment is shown at each taxonomic and OTU level.
+```
+
+Look up `MAPseq` in the list of tools, and select the SSU database, as this was the targeted subunit, and default parameters.
+
+We ran the sample against LSU and ITS databases, but the yield was very low, as expected. 
 
 Among the available options, there is the possibility of creating a table suitable for krona plot generation. This will be used later for a visual observation of your dataset.
 
-## Kraken2
+### Kraken2
 
-CHECK WHAT IS THE FASTEST, SILVA 138 16S or SILVA 2022
+While MAPseq is based on seuqence alignment against a reference, Kraken2 is a k-mer based taxonomy annotation tool. This means that every sequence is split in k-mers and searched against a database to identify which taxa matches it the most. 
 
-25: 2022-02-02T162959Z_silva_kmer-len_35_minimizer-len_31_minimizer-spaces_6_load-factor_0.7
+![](amplicon/kraken2_methods.jpg)
 
-26: 16S_SILVA138_k2db2021-08
+Look up `Kraken2` in the list of tools. Keep all parameters set as default set of parameters, with the exception of:
 
-Look up `Kraken2` in the list of tools, let's launch it with a default set of parameters, but only allowing for the best hit to be used. In a separate session you could change these parameters and aim for better accuracy, bearing in mind that execution time might increase. 
+- `Enable quick operation` will make processing faster by only using the best hit.
+- `Select a Kraken2 database` - use SILVA from 2022 (the most recent SILVA instance on galaxy)
 
-### Kraken-report + Krakentools
+In a separate session you could try changing these parameters and aim for better accuracy, bearing in mind that execution time might increase. 
+
+#### Kraken-report + Krakentools
 
 A few more steps are required for kraken data to be converted to a format ingestable in a krona plot.
 
 First, select 'Kraken-report' from the list of tools, and give it the Kraken classification file as input. The tool will only run for a few seconds. Do the same with ' Krakentools: Convert kraken report file to krona text file' by giving it the file 'Kraken-report' just generated.
 
-### Krona pie chart
+#### Krona pie chart
 Use both tabular files that have been generated by MAPseq and Kraken2 as input files. This tool will generate a separate plot for each dataset. 
 
-## Kraken2 vs MAPseq comparison
+### Kraken2 vs MAPseq comparison
 
 Open the two krona plots you just generated. They should look like these two:
 
 ::: {layout-ncol=2}
 
-![MAPseq](amplicon/MAPseq.png)
+![MAPseq](amplicon/MAPseq.png){width=70%}
 
 ![Kraken2](amplicon/Kraken2.png)
 :::
 
-Look at the difference in annotation numbers. 
-
 ::: {.callout-question .callout-tip}
-Notice the contamination on MAPseq's output. Thinking about the parameters that we used, do you understand why this was picked up by MAPseq, but not by Kraken2?
+Notice the contamination on MAPseq's output, and the difference in annotation numbers between the two (to be found in the top-right corner). Thinking about the parameters that we used, do you understand why this was picked up by MAPseq, but not by Kraken2?
 ::: 
 ::: {.callout-tip collapse="true"}
 ## Answer
 Kraken2 was only focused on a bacterial database, while we used a generic SSU database for MAPseq. Also this shows probably how much contamination there was in the initil sample, underlying how important it is to decontaminate your sample beforehand. 
 :::
 
-Let's focus on the bacterial annotations only. 
+Let's focus only on the bacterial annotations by clicking on the `Bacteria` sections of the plots. 
 
 ![MAPseq_bac](amplicon/MAPseq_bacteria_focus.png)

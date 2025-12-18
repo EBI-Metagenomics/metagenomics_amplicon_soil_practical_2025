@@ -6,7 +6,7 @@ project:
     - "*.qmd"                      # only render qmd files
 
 website:
-  title: "Metagenomics and amplicon data at MGNify (2025)"
+  title: "Metagenomics and amplicon data at MGnify (2025)"
   favicon: static/mgnify_logo.png
   page-navigation: true
   navbar:
