@@ -10,7 +10,7 @@
 <meta name="author" content="Tatiana Gurbich">
 <meta name="dcterms.date" content="2025-12-19">
 
-<title>Amplicon practical – Metagenomics and amplicon data at MGNify (2025)</title>
+<title>Amplicon practical – Metagenomics and amplicon data at MGnify (2025)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../sessions/metagenomics.html" rel="prev">
+<link href="../sessions/metagenomics.html" rel="next">
 <link href="../static/mgnify_logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Metagenomics and amplicon data at MGNify (2025)</span>
+    <span class="navbar-title">Metagenomics and amplicon data at MGnify (2025)</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/metagenomics.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon practical</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon practical</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,14 +151,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sessions/metagenomics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Metagenomics practical</span></a>
+  <a href="../sessions/amplicon.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Amplicon practical</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sessions/amplicon.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Amplicon practical</span></a>
+  <a href="../sessions/metagenomics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metagenomics practical</span></a>
   </div>
 </li>
       </ul>
@@ -176,15 +176,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a>
   <ul class="collapse">
   <li><a href="#download-an-amplicon-sample" id="toc-download-an-amplicon-sample" class="nav-link" data-scroll-target="#download-an-amplicon-sample">Download an amplicon sample</a></li>
-  <li><a href="#fastqc" id="toc-fastqc" class="nav-link" data-scroll-target="#fastqc">FastQC</a></li>
-  <li><a href="#performing-taxonomic-annotation-of-your-amplicon-data" id="toc-performing-taxonomic-annotation-of-your-amplicon-data" class="nav-link" data-scroll-target="#performing-taxonomic-annotation-of-your-amplicon-data">Performing taxonomic annotation of your amplicon data</a></li>
-  <li><a href="#mapseq" id="toc-mapseq" class="nav-link" data-scroll-target="#mapseq">MAPseq</a></li>
-  <li><a href="#kraken2" id="toc-kraken2" class="nav-link" data-scroll-target="#kraken2">Kraken2</a>
+  <li><a href="#quality-assessment-with-fastqc" id="toc-quality-assessment-with-fastqc" class="nav-link" data-scroll-target="#quality-assessment-with-fastqc">Quality assessment with FastQC</a></li>
+  <li><a href="#performing-taxonomic-annotation-of-your-amplicon-data" id="toc-performing-taxonomic-annotation-of-your-amplicon-data" class="nav-link" data-scroll-target="#performing-taxonomic-annotation-of-your-amplicon-data">Performing taxonomic annotation of your amplicon data</a>
   <ul class="collapse">
-  <li><a href="#kraken-report-krakentools" id="toc-kraken-report-krakentools" class="nav-link" data-scroll-target="#kraken-report-krakentools">Kraken-report + Krakentools</a></li>
-  <li><a href="#krona-pie-chart" id="toc-krona-pie-chart" class="nav-link" data-scroll-target="#krona-pie-chart">Krona pie chart</a></li>
-  </ul></li>
+  <li><a href="#mapseq" id="toc-mapseq" class="nav-link" data-scroll-target="#mapseq">MAPseq</a></li>
+  <li><a href="#kraken2" id="toc-kraken2" class="nav-link" data-scroll-target="#kraken2">Kraken2</a></li>
   <li><a href="#kraken2-vs-mapseq-comparison" id="toc-kraken2-vs-mapseq-comparison" class="nav-link" data-scroll-target="#kraken2-vs-mapseq-comparison">Kraken2 vs MAPseq comparison</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -192,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/metagenomics.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon practical</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/amplicon.html">Amplicon practical</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Amplicon practical</h1>
 </div>
@@ -256,26 +254,23 @@ ul.task-list li input[type="checkbox"] {
 <p>https://usegalaxy.org/</p>
 <p>Create an account (give students 5 minutes)</p>
 <p>Log-in to your account.</p>
-<p>Upload the amplicon sample you downloaded.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="amplicon/file_upload.png" class="img-fluid figure-img"></p>
-<figcaption>upload</figcaption>
-</figure>
-</div>
+<p>In the top-left corner, find the upload button, and submit the amplicon sample you downloaded.</p>
+<p><img src="amplicon/galaxy_upload_arrow.png" class="img-fluid"></p>
 </section>
-<section id="fastqc" class="level2">
-<h2 class="anchored" data-anchor-id="fastqc">FastQC</h2>
-<p>Look up <code>FastQC</code> in the list of tools</p>
-<p>Fastq files contain the raw sequence returned by the sequencer, including quality values associated to every base pair.</p>
-<p>FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference.</p>
+<section id="quality-assessment-with-fastqc" class="level2">
+<h2 class="anchored" data-anchor-id="quality-assessment-with-fastqc">Quality assessment with FastQC</h2>
+<p>Assessing datasets quality is an essential step if we aim to obtain a meaningful downstream analysis. We can do this by looking at the raw sequence, which is usually stored in a FASTQ file. The FASTQ format is a text-based format that contains the raw sequence returned by the sequencer, and quality values associated to every base pair.</p>
+<p>FastQC is tool allowing you to observe sequence quality and content quickly.</p>
+<p>Look up <code>FastQC</code> in the list of tools on the top right corner, and launch it on the sequences that you uploaded.</p>
+<p>FastQC returns two types of outputs: a raw file and a pre-made html file containing multiple graphs with information about the sequence. Download that file, extract it, and open it in your browser of preference. FastQC provides information on various parameters, such as the range of quality values across all bases at each position.</p>
+<p>The first section of a FastQC report is a summary for all quality checkes tested by the tool.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_summary.png" class="img-fluid figure-img"></p>
 <figcaption>FastQC summary</figcaption>
 </figure>
 </div>
-<p>Per base sequence quality is quite decent for all reads in the sample.</p>
+<p>It looks like not all the checks passed, let’s look at a few of these more in detail.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_base_quality.png" class="img-fluid figure-img"></p>
@@ -290,14 +285,43 @@ ul.task-list li input[type="checkbox"] {
 <li>The blue line represents the mean quality.</li>
 </ul>
 <p>The y-axis on the graph shows the quality scores. The higher the score, the better the base call. The background of the graph divides the y-axis into very good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red).</p>
-<p>You can also look up the distribution of the average quality per read in the sample</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Looking at the plot above, what does the quality of the sample look like?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The majority of the base sequence quality values falls into the good-quality section of the graph, and only the lower side of the whiskers is sometimes falling in the red region.</p>
+</div>
+</div>
+</div>
+<p>You can also look up the distribution of the average quality per read in the sample:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_sequence_quality.png" class="img-fluid figure-img"></p>
 <figcaption>FastQC sequence quality</figcaption>
 </figure>
 </div>
-<p>You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance to the same base position containing the same base.</p>
+<p>You can observe how the distribution of amplicon bases is much more scattered compared to a metagenomic samples. This is usually because amplicon sequencing targets specific regions, leading to a higher chance of the same base position containing the same base.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/fastqc_base_content.png" class="img-fluid figure-img"></p>
@@ -318,7 +342,7 @@ Question
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -327,7 +351,7 @@ Question
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The first bases in this sample are primer sequence. In amplicon libraries, all reads start at (nearly) the same position because PCR primers define the amplicon boundaries. This means that the same primer sequence (or its reverse complement) is present at the start of almost every read, leading to a highly uniform per-base sequence content. After nucleotide ~10, the biological target sequence begins.</p>
 </div>
@@ -362,42 +386,52 @@ Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Analyses names can be a bit confusing in galaxy - to remember which files you are suppoed to use in downstream anallyses it is recommended to rename them by pressing the pencil symbol on the analysis, and then editing the Name to something you’ll remember easily.</p>
+<p>Analyses names can be a bit confusing in galaxy - to remember which files you are supposed to use in downstream anallyses it is recommended to rename them by pressing the pencil symbol on the analysis, and then editing the Name to something you’ll remember easily.</p>
 </div>
 </div>
-</section>
-<section id="mapseq" class="level2">
-<h2 class="anchored" data-anchor-id="mapseq">MAPseq</h2>
-<p>Look up <code>MAPseq</code> in the list of tools</p>
-<p>Let’s select the SSU database, as this was the targeted subunit, and default parameters.</p>
-<p>Separately we decided to run LSU and ITS databases, but the yield was very low, as expected.</p>
+<section id="mapseq" class="level3">
+<h3 class="anchored" data-anchor-id="mapseq">MAPseq</h3>
+<p>MAPseq provides a fast and accurate sequence read mapping against hierarchically clustered and annotated reference sequences.</p>
+<p>From the MAPseq repo:</p>
+<pre><code>MAPseq is a set of fast and accurate sequence read classification tools designed 
+to assign taxonomy and OTU classifications to ribosomal RNA sequences. This is 
+done by using a reference set of full-length ribosomal RNA sequences for which 
+known taxonomies are known, and for which a set of high quality OTU clusters 
+has been previously generated. For each read, the best guess and correspoding 
+confidence in the assignment is shown at each taxonomic and OTU level.</code></pre>
+<p>Look up <code>MAPseq</code> in the list of tools, and select the SSU database, as this was the targeted subunit, and default parameters.</p>
+<p>We ran the sample against LSU and ITS databases, but the yield was very low, as expected.</p>
 <p>Among the available options, there is the possibility of creating a table suitable for krona plot generation. This will be used later for a visual observation of your dataset.</p>
 </section>
-<section id="kraken2" class="level2">
-<h2 class="anchored" data-anchor-id="kraken2">Kraken2</h2>
-<p>CHECK WHAT IS THE FASTEST, SILVA 138 16S or SILVA 2022</p>
-<p>25: 2022-02-02T162959Z_silva_kmer-len_35_minimizer-len_31_minimizer-spaces_6_load-factor_0.7</p>
-<p>26: 16S_SILVA138_k2db2021-08</p>
-<p>Look up <code>Kraken2</code> in the list of tools, let’s launch it with a default set of parameters, but only allowing for the best hit to be used. In a separate session you could change these parameters and aim for better accuracy, bearing in mind that execution time might increase.</p>
-<section id="kraken-report-krakentools" class="level3">
-<h3 class="anchored" data-anchor-id="kraken-report-krakentools">Kraken-report + Krakentools</h3>
+<section id="kraken2" class="level3">
+<h3 class="anchored" data-anchor-id="kraken2">Kraken2</h3>
+<p>While MAPseq is based on seuqence alignment against a reference, Kraken2 is a k-mer based taxonomy annotation tool. This means that every sequence is split in k-mers and searched against a database to identify which taxa matches it the most.</p>
+<p><img src="amplicon/kraken2_methods.jpg" class="img-fluid"></p>
+<p>Look up <code>Kraken2</code> in the list of tools. Keep all parameters set as default set of parameters, with the exception of:</p>
+<ul>
+<li><code>Enable quick operation</code> will make processing faster by only using the best hit.</li>
+<li><code>Select a Kraken2 database</code> - use SILVA from 2022 (the most recent SILVA instance on galaxy)</li>
+</ul>
+<p>In a separate session you could try changing these parameters and aim for better accuracy, bearing in mind that execution time might increase.</p>
+<section id="kraken-report-krakentools" class="level4">
+<h4 class="anchored" data-anchor-id="kraken-report-krakentools">Kraken-report + Krakentools</h4>
 <p>A few more steps are required for kraken data to be converted to a format ingestable in a krona plot.</p>
 <p>First, select ‘Kraken-report’ from the list of tools, and give it the Kraken classification file as input. The tool will only run for a few seconds. Do the same with ’ Krakentools: Convert kraken report file to krona text file’ by giving it the file ‘Kraken-report’ just generated.</p>
 </section>
-<section id="krona-pie-chart" class="level3">
-<h3 class="anchored" data-anchor-id="krona-pie-chart">Krona pie chart</h3>
+<section id="krona-pie-chart" class="level4">
+<h4 class="anchored" data-anchor-id="krona-pie-chart">Krona pie chart</h4>
 <p>Use both tabular files that have been generated by MAPseq and Kraken2 as input files. This tool will generate a separate plot for each dataset.</p>
 </section>
 </section>
-<section id="kraken2-vs-mapseq-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="kraken2-vs-mapseq-comparison">Kraken2 vs MAPseq comparison</h2>
+<section id="kraken2-vs-mapseq-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="kraken2-vs-mapseq-comparison">Kraken2 vs MAPseq comparison</h3>
 <p>Open the two krona plots you just generated. They should look like these two:</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="amplicon/MAPseq.png" class="img-fluid figure-img"></p>
+<p><img src="amplicon/MAPseq.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>MAPseq</figcaption>
 </figure>
 </div>
@@ -412,7 +446,6 @@ Question
 </div>
 </div>
 </div>
-<p>Look at the difference in annotation numbers.</p>
 <div class="callout callout-style-default callout-question callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -423,11 +456,11 @@ Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Notice the contamination on MAPseq’s output. Thinking about the parameters that we used, do you understand why this was picked up by MAPseq, but not by Kraken2?</p>
+<p>Notice the contamination on MAPseq’s output, and the difference in annotation numbers between the two (to be found in the top-right corner). Thinking about the parameters that we used, do you understand why this was picked up by MAPseq, but not by Kraken2?</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -436,13 +469,13 @@ Question
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Kraken2 was only focused on a bacterial database, while we used a generic SSU database for MAPseq. Also this shows probably how much contamination there was in the initil sample, underlying how important it is to decontaminate your sample beforehand.</p>
 </div>
 </div>
 </div>
-<p>Let’s focus on the bacterial annotations only.</p>
+<p>Let’s focus only on the bacterial annotations by clicking on the <code>Bacteria</code> sections of the plots.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="amplicon/MAPseq_bacteria_focus.png" class="img-fluid figure-img"></p>
@@ -451,6 +484,7 @@ Question
 </div>
 
 
+</section>
 </section>
 </section>
 
@@ -857,11 +891,11 @@ Question
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../sessions/metagenomics.html" class="pagination-link" aria-label="Metagenomics practical">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Metagenomics practical</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../sessions/metagenomics.html" class="pagination-link" aria-label="Metagenomics practical">
+        <span class="nav-page-text">Metagenomics practical</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
