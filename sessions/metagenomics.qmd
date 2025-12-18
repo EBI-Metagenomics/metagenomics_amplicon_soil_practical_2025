@@ -65,3 +65,64 @@ The upload will take a few minutes. While the data are uploading, you will see t
 ![icon](metagenomics/read.png){width=35px} Before we proceed with the analysis, we should check that the data quality is OK. Normally, we would do this for all FASTQ files but for the purposes of this exercise we will try with one. We will be using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/){target="_blank"}.
 
 #### ![icon](metagenomics/footprints.png){width=35px} Steps:
+
+1. Click on the "Tools" icon on the left-hand side, locate `FastQC` (or search for it in the search window that will appear) and click on it.\
+2. We will only be specifying one parameter: "Raw read data from your current history". Select the FASTQ file we just downloaded and click the blue "Run Tool" button:\
+![Galaxy history](metagenomics/fastqc1.png){width=500px style="border:1px solid grey;"}\
+3. `FastQC` should now be running (you should see it in orange in your history menu on the right). Because it takes a while to run on such a large file, we will proceed to other steps now and come back to look at the results later. \
+**Note the step number to easily come back to it when it's done.**
+
+--------------------------------------------------
+
+### Who is in my sample
+
+![icon](metagenomics/read.png){width=35px} Let's now find out what taxa we have in these two samples. We will be using `Kraken2`.\
+Because of how large the files are (this is the reality of metagenomics, especially soil/rhisozphere), we already ran `Kraken2` for you. You will be working with the outputs of these runs.\
+
+These is the command that was used on each of the two samples (using `SRR15517665` as the example here):\
+```
+kraken2 --paired --gzip-compressed --threads 32 --db  Standard-8 \
+--report SRR15517665_standard8_report.txt --output SRR15517665_standard8.out \
+Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz
+```
+Here is what the different parameters mean:\
+`--paired`: specifies that we have paired FASTQ files (forward and reverse reads)\
+`--gzip-compressed`: specifies that our FASTQ files are gzip compressed\
+`--threads 32`: tells Kraken2 to use 32 threads (for faster processing)\
+`--db  Standard-8`: specifies the database to use. Here, we are using Kraken2's Standard database that has been capped at 8GB.\
+`--report`: tells Kraken2 to produce a report file and specifies the file name for it. We will be using this report in the upcoming steps.\
+`--output`: specifies where to save the output to\
+`Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz`: these are paths to the paired-end FASTQ files.\
+
+#### ![icon](metagenomics/footprints.png){width=35px} Steps to load the Kraken2 results into Galaxy:\
+
+1. Click on the "Upload" icon in the top left corner in Galaxy, then on "Paste/fetch data" \
+2. Paste the following links into the window:\
+```
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard.out
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard8.out
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard8_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard.out
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard8.out
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard8_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard_report.txt
+```
+Press Start, the window should turn green and you can close it.\
+
+--------------------------------------------------
+
+### Data quality - check the results
+
+While the Kraken2 results are loading, let's check the outputs of FastQC, which should now be ready.
+
+![icon](metagenomics/footprints.png){width=35px} In the history panel on the right-hand side locate the FastQC output. It should be called `FastQC on dataset [number]: Web page`. Click on the eye icon to view it.
+
+::: {.callout-question .callout-tip}
+Scroll through the results and examine the plots (you can download them to make this easier). Did any of the steps not pass quality control? Can you think why that might be?
+:::
+::: {.callout-tip collapse="true"}
+## Answer
+
+:::
+
