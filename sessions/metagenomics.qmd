@@ -2,7 +2,7 @@
 title: "Metagenomics practical"
 date: 2025-12-19
 license: "Apache 2.0"
-order: 1
+order: 2
 author:
   - name: Germana Baldi
     orcid: 0000-0003-1719-5206
@@ -74,7 +74,7 @@ The upload will take a few minutes. While the data are uploading, you will see t
 
 --------------------------------------------------
 
-### Who is in my sample
+### Who is in my sample?
 
 ![icon](metagenomics/read.png){width=35px} Let's now find out what taxa we have in these two samples. We will be using `Kraken2`.\
 Because of how large the files are (this is the reality of metagenomics, especially soil/rhisozphere), we already ran `Kraken2` for you. You will be working with the outputs of these runs.\
@@ -93,6 +93,8 @@ Here is what the different parameters mean:\
 `--report`: tells Kraken2 to produce a report file and specifies the file name for it. We will be using this report in the upcoming steps.\
 `--output`: specifies where to save the output to\
 `Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz`: these are paths to the paired-end FASTQ files.\
+
+For each of the two samples the above command was run twice: once on the standard kraken2 database and once on the one that is capped at 8GB. \
 
 #### ![icon](metagenomics/footprints.png){width=35px} Steps to load the Kraken2 results into Galaxy:\
 
@@ -135,3 +137,21 @@ The GC-content plot "failed". However, the theoretical, normal distribution is b
 ![Galaxy history](metagenomics/gc.png){width=600px}\
 :::
 
+--------------------------------------------------
+
+### Who is in my sample? - continued
+
+Now that we know that our sample is good quality, we can proceed with analysis. We will start by making four Krona plots (two per sample - one for the standard database and one for the capped database). \
+
+#### ![icon](metagenomics/footprints.png){width=35px} Steps \
+1. Search for `Krakentools: Convert kraken report file to krona text file` in the list of tools on the left-hand side of the page in Galaxy.\
+2. Kick off Krona plot input generation for the four Kraken report files (see the screenshot - you can choose multiple input files if you click the "Multiple datasets" icon:
+![Galaxy history](metagenomics/krona-kickoff.png){width=600px}\
+Clicking the "Run Tool" button will start four Krona plot input generation jobs, wait for them to finish.\
+3. Take the time to rename the outputs of Step 2 so that you keep track of samples:
+    - Go through the four results named similarly to "Krakentools: Convert kraken report file on dataset 36 renamed", one at a time\
+    - Click on the "Details" tab to check which Kraken report file was used as input\
+    - Then click the "Edit" tab, and add the information to the "Name" field\
+    - Click "Save". \
+4. Make the Krona plots: search for "Krona pie chart from taxonomic profile" in the tool panel.\
+Select "Tabular" in the "What is the type of your input data" field. \
