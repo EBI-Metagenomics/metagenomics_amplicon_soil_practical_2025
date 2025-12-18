@@ -119,10 +119,19 @@ While the Kraken2 results are loading, let's check the outputs of FastQC, which 
 ![icon](metagenomics/footprints.png){width=35px} In the history panel on the right-hand side locate the FastQC output. It should be called `FastQC on dataset [number]: Web page`. Click on the eye icon to view it.
 
 ::: {.callout-question .callout-tip}
+How many sequences are there in total in this FASTQ file?
+:::
+::: {.callout-tip collapse="true"}
+## Answer
+30,972,510 (You can get this number from the "Basic Statistics" table
+:::
+
+::: {.callout-question .callout-tip}
 Scroll through the results and examine the plots (you can download them to make this easier). Did any of the steps not pass quality control? Can you think why that might be?
 :::
 ::: {.callout-tip collapse="true"}
 ## Answer
-
+The GC-content plot "failed". However, the theoretical, normal distribution is built with the expectation that the sequencing data comes from a single genome. Because this is a metagenomic sample and it contains a mix of different species each with its own GC content, the distribution does not follow the curve expected for a single species. In other words, this is expected in this case.\
+![Galaxy history](metagenomics/gc.png){width=600px}\
 :::
 
