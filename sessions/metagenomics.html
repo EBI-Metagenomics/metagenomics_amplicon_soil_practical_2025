@@ -174,6 +174,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#set-up-your-galaxy-account-and-workspace" id="toc-set-up-your-galaxy-account-and-workspace" class="nav-link" data-scroll-target="#set-up-your-galaxy-account-and-workspace">Set up your Galaxy account and workspace</a></li>
+  <li><a href="#download-data" id="toc-download-data" class="nav-link" data-scroll-target="#download-data">Download data</a></li>
+  <li><a href="#check-data-quality" id="toc-check-data-quality" class="nav-link" data-scroll-target="#check-data-quality">Check data quality</a></li>
+  <li><a href="#who-is-in-my-sample" id="toc-who-is-in-my-sample" class="nav-link" data-scroll-target="#who-is-in-my-sample">Who is in my sample?</a></li>
+  <li><a href="#data-quality---check-the-results" id="toc-data-quality---check-the-results" class="nav-link" data-scroll-target="#data-quality---check-the-results">Data quality - check the results</a></li>
+  <li><a href="#who-is-in-my-sample---continued" id="toc-who-is-in-my-sample---continued" class="nav-link" data-scroll-target="#who-is-in-my-sample---continued">Who is in my sample? - continued</a></li>
+  <li><a href="#calculating-alpha-diversity" id="toc-calculating-alpha-diversity" class="nav-link" data-scroll-target="#calculating-alpha-diversity">Calculating alpha diversity</a></li>
   </ul>
 </nav>
     </div>
@@ -231,10 +238,330 @@ ul.task-list li input[type="checkbox"] {
 
 
 <hr>
-<section id="learning-objectives" class="level1">
-<h1>Learning Objectives</h1>
+<section id="learning-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li>Evaluate the quality of metagenomic sequencing data using appropriate metrics and tools.</li>
+<li>Identify the taxa present in the sample and visualise them in a Krona plot.</li>
+<li>Apply Kraken2, KrakenTools, and Bracken to perform taxonomic classification of metagenomic data.</li>
+<li>Calculate and interpret alpha diversity metrics from metagenomic samples using the above tools to gain ecological insights.</li>
+</ul>
+<hr>
+</section>
+<section id="set-up-your-galaxy-account-and-workspace" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-your-galaxy-account-and-workspace">Set up your Galaxy account and workspace</h3>
+<section id="icon-steps" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps:</h4>
+<ol type="1">
+<li>Navigate to: <a href="https://usegalaxy.org/" target="_blank">Galaxy</a></li>
+<li>In the upper right corner click on “Register” and go through the steps <strong>(skip if you already have an account)</strong>.<br>
+<strong>Important</strong>: make sure you activate your account by clicking the link Galaxy will send to your email address.</li>
+<li>Create and name your Galaxy history:
+<ul>
+<li>Find the history panel on the right-hand side and click on the “+” to create a new history (its default name will be “Unnamed history”)<br>
+<img src="metagenomics/galaxy-history.png" class="img-fluid" style="border:1px solid grey;" width="200" alt="Galaxy history"><br>
+<br>
+</li>
+<li>Click on the name and change it to “Metagenomics practical”. It should look like this:<br>
+<img src="metagenomics/galaxy-history-renamed.png" class="img-fluid" style="border:1px solid grey;" width="200" alt="Galaxy history renamed"><br>
+</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="download-data" class="level3">
+<h3 class="anchored" data-anchor-id="download-data">Download data</h3>
+<p><img src="metagenomics/read.png" class="img-fluid" width="35" alt="icon"> In today’s practical, we will be working with two samples from tomato rhizosphere: <a href="https://www.ebi.ac.uk/ena/browser/view/SRR15517665" target="_blank">SRR15517665</a> and <a href="https://www.ebi.ac.uk/ena/browser/view/SRR15517666" target="_blank">SRR15517666</a>. We will start by taking a look at just one FASTQ file to assess its quality. In real life, you would do this for all four files (there are two FASTQ files per sample since this is paired-end sequencing).<br>
+</p>
+<section id="icon-steps-1" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps-1"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps:</h4>
+<ol type="1">
+<li><p>Locate and click on the Upload button in Galaxy (upper left corner of the page):<br>
+<img src="metagenomics/galaxy-upload.png" class="img-fluid" style="border:1px solid grey;" width="300" alt="Galaxy history"><br>
+</p></li>
+<li><p>A window will pop up. Click on the “Paste/fetch data” (shown in the image below):<br>
+<img src="metagenomics/galaxy-upload-1.png" class="img-fluid" style="border:1px solid grey;" width="500" alt="Galaxy history"><br>
+</p></li>
+<li><p>Paste the following link in the window and click Start: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR155/065/SRR15517665/SRR15517665_1.fastq.gz<br>
+<img src="metagenomics/galaxy-upload-2.png" class="img-fluid" style="border:1px solid grey;" width="500" alt="Galaxy history"><br>
+The pop-up window will turn green, and you can now close it.<br>
+The upload will take a few minutes. While the data are uploading, you will see the process in your history appear in orange and with a spinning wheel. This will be the case for all processes that are in progress in today’s practical. When processes complete, they turn green.<br>
+<img src="metagenomics/uploading.png" class="img-fluid" style="border:1px solid grey;" width="300" alt="Galaxy history"><br>
+</p></li>
+<li><p>When the upload is complete and the process has turned green, you can click on it and see your data preview:<br>
+<img src="metagenomics/data-sneakpeak.png" class="img-fluid" style="border:1px solid grey;" width="300" alt="Galaxy history"><br>
+</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="check-data-quality" class="level3">
+<h3 class="anchored" data-anchor-id="check-data-quality">Check data quality</h3>
+<p><img src="metagenomics/read.png" class="img-fluid" width="35" alt="icon"> Before we proceed with the analysis, we should check that the data quality is OK. Normally, we would do this for all FASTQ files but for the purposes of this exercise we will try with one. We will be using <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/" target="_blank">FastQC</a>.</p>
+<section id="icon-steps-2" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps-2"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps:</h4>
+<ol type="1">
+<li>Click on the “Tools” icon on the left-hand side, locate <code>FastQC</code> (or search for it in the search window that will appear) and click on it.<br>
+</li>
+<li>We will only be specifying one parameter: “Raw read data from your current history”. Select the FASTQ file we just downloaded and click the blue “Run Tool” button:<br>
+<img src="metagenomics/fastqc1.png" class="img-fluid" style="border:1px solid grey;" width="500" alt="Galaxy history"><br>
+</li>
+<li><code>FastQC</code> should now be running (you should see it in orange in your history menu on the right). Because it takes a while to run on such a large file, we will proceed to other steps now and come back to look at the results later.<br>
+<strong>Note the step number in Galaxy history to easily come back to it when it’s done.</strong></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="who-is-in-my-sample" class="level3">
+<h3 class="anchored" data-anchor-id="who-is-in-my-sample">Who is in my sample?</h3>
+<p><img src="metagenomics/read.png" class="img-fluid" width="35" alt="icon"> Let’s now find out what taxa we have in these two samples. We will be using <code>Kraken2</code>.<br>
+Because of how large the files are (this is the reality of metagenomics, especially soil/rhisozphere), we already ran <code>Kraken2</code> for you. You will be working with the outputs of these runs.<br>
+</p>
+<p>This is the command that was used on each of the two samples (using <code>SRR15517665</code> as the example here):<br>
+</p>
+<pre><code>kraken2 --paired --gzip-compressed --threads 32 --db  Standard \
+--report SRR15517665_standard_report.txt --output SRR15517665_standard.out \
+Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz</code></pre>
+<p>Here is what the different parameters mean:<br>
+<code>--paired</code>: specifies that we have paired FASTQ files (forward and reverse reads)<br>
+<code>--gzip-compressed</code>: specifies that our FASTQ files are gzip compressed<br>
+<code>--threads 32</code>: tells Kraken2 to use 32 threads (for faster processing)<br>
+<code>--db  Standard</code>: specifies the database to use. Here, we are using Kraken2’s Standard database.<br>
+<code>--report</code>: tells Kraken2 to produce a report file and specifies the file name for it. We will be using this report in the upcoming steps.<br>
+<code>--output</code>: specifies where to save the output to<br>
+<code>Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz</code>: these are paths to the paired-end FASTQ files.<br>
+</p>
+<p>We also ran this command again using a different Kraken2 database - PlusPF-8 (this is the standard database + protozoa and fungi, capped at 8GB)<br>
+</p>
+<section id="icon-steps-to-load-the-kraken2-results-into-galaxy" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps-to-load-the-kraken2-results-into-galaxy"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps to load the Kraken2 results into Galaxy:<br>
+</h4>
+<ol type="1">
+<li>Click on the “Upload” icon in the top left corner in Galaxy, then on “Paste/fetch data”<br>
+</li>
+<li>Paste the following links into the window:<br>
+</li>
+</ol>
+<pre><code>https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard.out
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard.out
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_PlusPF-8_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_PlusPF-8_report.txt</code></pre>
+<p>Press Start, the window should turn green and you can close it.<br>
+</p>
+<hr>
+</section>
+</section>
+<section id="data-quality---check-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="data-quality---check-the-results">Data quality - check the results</h3>
+<p>While the Kraken2 results are loading, let’s check the outputs of FastQC, which should now be ready.</p>
+<p><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> In the history panel on the right-hand side locate the FastQC output. It should be called <code>FastQC on dataset [number]: Web page</code>. Click on the eye icon to view it.</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How many sequences are there in total in this FASTQ file?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>30,972,510 (You can get this number from the “Basic Statistics” table</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Scroll through the results and examine the plots (you can download them to make this easier). Did any of the steps not pass quality control? Can you think why that might be?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The GC-content plot “failed”. However, the theoretical, normal distribution is built with the expectation that the sequencing data comes from a single genome. Because this is a metagenomic sample and it contains a mix of different species each with its own GC content, the distribution does not follow the curve expected for a single species. In other words, this is expected in this case.<br>
+<img src="metagenomics/gc.png" class="img-fluid" width="600" alt="Galaxy history"><br>
+</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="who-is-in-my-sample---continued" class="level3">
+<h3 class="anchored" data-anchor-id="who-is-in-my-sample---continued">Who is in my sample? - continued</h3>
+<p>Now that we know that our sample is good quality, we can proceed with analysis. We will start by making four Krona plots (two per sample - one for the standard database and one for the PlusPF-8 database).<br>
+</p>
+<section id="icon-steps-3" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps-3"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps<br>
+</h4>
+<ol type="1">
+<li>Search for <code>Krakentools: Convert kraken report file to krona text file</code> in the list of tools on the left-hand side of the page in Galaxy.<br>
+</li>
+<li>Kick off Krona plot input generation for the four Kraken report files (see the screenshot - you can choose multiple input files if you click the “Multiple datasets” icon:<br>
+<img src="metagenomics/krona-kickoff.png" class="img-fluid" width="600" alt="Galaxy history"><br>
+Clicking the “Run Tool” button will start four Krona plot input generation jobs, wait for them to finish.<br>
+</li>
+<li>Take the time to rename the outputs of Step 2 so that you keep track of samples:
+<ul>
+<li>Go through the four results named similarly to “Krakentools: Convert kraken report file on dataset 36”, one at a time by clicking on the pencil icon (“Edit attributes”)<br>
+</li>
+<li>Click on the “Details” tab to check which Kraken2 report file was used as input<br>
+</li>
+<li>Then click the “Edit” tab, and add the information to the “Name” field (record both the sample name and the Kraken2 db that was used - Standard or PlusPF-8<br>
+</li>
+<li>Click “Save”.<br>
+</li>
+</ul></li>
+<li>Make the Krona plots: search for <code>Krona pie chart from taxonomic profile</code> in the tool panel.<br>
+Select “Tabular” in the “What is the type of your input data” field. As your inputs, select the four files you just renamed in Step 3:<br>
+<img src="metagenomics/krona-kickoff-2.png" class="img-fluid" width="600" alt="Galaxy history"><br>
+Click “Run Tool”<br>
+</li>
+<li>You will get 4 Krona plots as your output. Remove the noisy labels next to the Krona plot by clicking on the “X” icon just above them (located to the right of the Krona plot).</li>
+</ol>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For each run (SRR15517665 and SRR15517666) compare how the Krona plots look for the Standard database and for the PlusPF-8 database. Are there any differences?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now compare the two samples to each other (make sure you are comparing the results obtained using the same database). What can you say about their relative taxonomic composition?</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="calculating-alpha-diversity" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-alpha-diversity">Calculating alpha diversity</h3>
+<p><img src="metagenomics/read.png" class="img-fluid" width="35" alt="icon"> Alpha diversity describes how diverse a single sample is. It summarizes how many taxa are present (a metric called richness) and how evenly they are distributed within that one sample. In other words, it answers the question <em>“How complex is this community?”</em><br>
+</p>
+<p>We can compute diversity metrics from the <code>Kraken2</code> outputs but we first need to process them with a tool called <code>Bracken</code>. <code>Bracken</code> fixes a known limitation of <code>Kraken2</code> by turning classifications into more accurate abundance estimates. <code>Kraken2</code> classifies each read to the lowest common ancestor (LCA) in the taxonomy. It is optimised for speed and classification, not abundance. If a read matches multiple closely related species, <code>Kraken2</code> assigns it higher up (genus, family, etc.) leading to inflated counts of higher taxonomic levels.<br>
+<code>Bracken</code> uses k-mer distribution information from the Kraken2 database to reassign reads downward to species (or genus, etc.). It estimated read counts and relative abundances and answers the question <em>“Given these ambiguous classifications, what is the most likely true abundance?”</em><br>
+</p>
+<p>For this exercise, we will only use Kraken2 outputs computed using the Standard database to save time. We will be computing the Shannon diversity index, which will give us a single number summarising species richness and evenness in a sample.</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Given the Krona plots you just examined, how different do you expect alpha diversity to be between the two samples in your analysis?</p>
+</div>
+</div>
+<section id="icon-steps-to-run-bracken" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps-to-run-bracken"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps to run Bracken</h4>
+<ol type="1">
+<li>Search for <code>Bracken</code> in the list of tools.</li>
+<li>In the <code>Kraken report file</code> field, click the <code>Multiple datasets</code> icon to enable selection of several reports. Choose files <code>SRR15517665_standard_report.txt</code> and <code>SRR15517666_standard_report.txt</code> as inputs from the drop down list.</li>
+<li>In the <code>Select a Kmer distribution field</code>, choose <code>Standard</code> (this was the Kraken2 database used to generate these reports).</li>
+<li>Leave the remaining parameters unchanged and click <code>Run Tool</code></li>
+</ol>
+<div class="callout callout-style-default callout-task callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Examine Bracken outputs - did any read counts get reassigned?</p>
+</div>
+</div>
+</section>
+<section id="icon-steps-to-calculate-alpha-diversity-for-the-two-samples" class="level4">
+<h4 class="anchored" data-anchor-id="icon-steps-to-calculate-alpha-diversity-for-the-two-samples"><img src="metagenomics/footprints.png" class="img-fluid" width="35" alt="icon"> Steps to calculate alpha diversity for the two samples</h4>
+<ol type="1">
+<li>Search for <code>Krakentools: Calculates alpha diversity</code> in the Tools list</li>
+<li>Click the <code>Multiple datasets</code> icon and select the two Bracken reports as inputs.</li>
+<li>Leave the remaining parameters unchanged and click <code>Run Tool</code></li>
+</ol>
+<p>You will receive a Shannon index value for each sample.<br>
+</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What values for Shannon diversity index did you get? How different are they between the two samples? Is this what you expected?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do you remember from the lecture what the Shannon diversity index values you got might mean?</p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>Apache 2.0</div></div></section></div></main> <!-- /main -->
