@@ -20,8 +20,10 @@ author:
 --------------------------------------------------
 
 ### Learning Objectives
-- Know how to assess the quality of metagenomic data
-- Be able to identify taxa present in the sample and visualise them in a Krona plot
+- Evaluate the quality of metagenomic sequencing data using appropriate metrics and tools.
+- Identify the taxa present in the sample and visualise them in a Krona plot.
+- Apply Kraken2, KrakenTools, and Bracken to perform  taxonomic classification of metagenomic data.
+- Calculate and interpret alpha diversity metrics from metagenomic samples using the above tools to gain ecological insights.
 
 --------------------------------------------------
 
@@ -81,20 +83,20 @@ Because of how large the files are (this is the reality of metagenomics, especia
 
 These is the command that was used on each of the two samples (using `SRR15517665` as the example here):\
 ```
-kraken2 --paired --gzip-compressed --threads 32 --db  Standard-8 \
---report SRR15517665_standard8_report.txt --output SRR15517665_standard8.out \
+kraken2 --paired --gzip-compressed --threads 32 --db  Standard \
+--report SRR15517665_standard_report.txt --output SRR15517665_standard.out \
 Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz
 ```
 Here is what the different parameters mean:\
 `--paired`: specifies that we have paired FASTQ files (forward and reverse reads)\
 `--gzip-compressed`: specifies that our FASTQ files are gzip compressed\
 `--threads 32`: tells Kraken2 to use 32 threads (for faster processing)\
-`--db  Standard-8`: specifies the database to use. Here, we are using Kraken2's Standard database that has been capped at 8GB.\
+`--db  Standard`: specifies the database to use. Here, we are using Kraken2's Standard database.\
 `--report`: tells Kraken2 to produce a report file and specifies the file name for it. We will be using this report in the upcoming steps.\
 `--output`: specifies where to save the output to\
 `Fastq/SRR15517665_1.fastq.gz Fastq/SRR15517665_2.fastq.gz`: these are paths to the paired-end FASTQ files.\
 
-For each of the two samples the above command was run twice: once on the standard kraken2 database and once on the one that is capped at 8GB. \
+We also ran this command again using a different Kraken2 database - PlusPF-8 (this is the standard database + protozoa and fungi, capped at 8GB)\
 
 #### ![icon](metagenomics/footprints.png){width=35px} Steps to load the Kraken2 results into Galaxy:\
 
@@ -102,13 +104,11 @@ For each of the two samples the above command was run twice: once on the standar
 2. Paste the following links into the window:\
 ```
 https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard.out
-https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard8.out
-https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard8_report.txt
 https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_standard_report.txt
 https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard.out
-https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard8.out
-https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard8_report.txt
 https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_standard_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517666_PlusPF-8_report.txt
+https://ftp.ebi.ac.uk/pub/databases/metagenomics/temp/Plant_breeding_course_2025/Kraken_results/SRR15517665_PlusPF-8_report.txt
 ```
 Press Start, the window should turn green and you can close it.\
 
@@ -141,7 +141,7 @@ The GC-content plot "failed". However, the theoretical, normal distribution is b
 
 ### Who is in my sample? - continued
 
-Now that we know that our sample is good quality, we can proceed with analysis. We will start by making four Krona plots (two per sample - one for the standard database and one for the capped database). \
+Now that we know that our sample is good quality, we can proceed with analysis. We will start by making four Krona plots (two per sample - one for the standard database and one for the PlusPF-8 database). \
 
 #### ![icon](metagenomics/footprints.png){width=35px} Steps \
 1. Search for `Krakentools: Convert kraken report file to krona text file` in the list of tools on the left-hand side of the page in Galaxy.\
@@ -149,12 +149,23 @@ Now that we know that our sample is good quality, we can proceed with analysis. 
 ![Galaxy history](metagenomics/krona-kickoff.png){width=600px}\
 Clicking the "Run Tool" button will start four Krona plot input generation jobs, wait for them to finish.\
 3. Take the time to rename the outputs of Step 2 so that you keep track of samples:
-    - Go through the four results named similarly to "Krakentools: Convert kraken report file on dataset 36 renamed", one at a time\
+    - Go through the four results named similarly to "Krakentools: Convert kraken report file on dataset 36", one at a time by clicking on the pencil icon ("Edit attributes")\
     - Click on the "Details" tab to check which Kraken2 report file was used as input\
-    - Then click the "Edit" tab, and add the information to the "Name" field (record both the sample name and the Kraken2 db that was used - standard or PlusPF-8\
+    - Then click the "Edit" tab, and add the information to the "Name" field (record both the sample name and the Kraken2 db that was used - Standard or PlusPF-8\
     - Click "Save". \
 4. Make the Krona plots: search for `Krona pie chart from taxonomic profile` in the tool panel.\
-Select "Tabular" in the "What is the type of your input data" field. \
+Select "Tabular" in the "What is the type of your input data" field. As your inputs, select the four files you just renamed in Step 3: \
+![Galaxy history](metagenomics/krona-kickoff-2.png){width=600px}\
+Click "Run Tool"\
+5. You will get 4 Krona plots as your output. Remove the noisy labels next to the Krona plot by clicking on the "X" icon just above them (located to the right of the Krona plot).
+
+::: {.callout-question .callout-tip}
+For each run (SRR15517665 and SRR15517666) compare how the Krona plots look for the Standard database and for the PlusPF-8 database. Are there any differences?
+:::
+
+::: {.callout-question .callout-tip}
+Now compare the two samples to each other (make sure you are comparing the results obtained using the same database). What can you say about their relative taxonomic composition?
+:::
 
 --------------------------------------------------
 
@@ -163,6 +174,38 @@ Select "Tabular" in the "What is the type of your input data" field. \
 ![icon](metagenomics/read.png){width=35px}  Alpha diversity describes how diverse a single sample is. It summarizes how many taxa are present (a metric called richness) and how evenly they are distributed within that one sample. In other words, it answers the question *"How complex is this community?"*\
 
 We can compute diversity metrics from the `Kraken2` outputs but we first need to process them with a tool called `Bracken`. `Bracken` fixes a known limitation of `Kraken2` by turning classifications into more accurate abundance estimates. `Kraken2` classifies each read to the lowest common ancestor (LCA) in the taxonomy. It is optimized for speed and classification, not abundance. If a read matches multiple closely related species, `Kraken2` assigns it higher up (genus, family, etc.) leading to inflated counts of higher taxonomic levels. \
-`Bracken` uses k-mer distribution information from the Kraken2 database to reassign reads downward to species (or genus, etc.). It estimated read counts and relative abundances and answers the question *"Given these ambiguous classifications, what is the most likely true abundance?"*
+`Bracken` uses k-mer distribution information from the Kraken2 database to reassign reads downward to species (or genus, etc.). It estimated read counts and relative abundances and answers the question *"Given these ambiguous classifications, what is the most likely true abundance?"*\
+
+For this exercise, we will only use Kraken2 outputs computed using the Standard database to save time. We will be computing the Shannon diversity index, which will give us a single number summarising species richness and evenness in a sample.
+
+::: {.callout-question .callout-tip}
+Given the Krona plots you just examined, how different do you expect alpha diversity to be between the two samples in your analysis?
+:::
+
+#### ![icon](metagenomics/footprints.png){width=35px} Steps to run Bracken
+1. Search for `Bracken` in the list of tools.
+2. In the `Kraken report file` field, click the `Multiple datasets` icon to enable selection of several reports. Choose files `SRR15517665_standard_report.txt` and `SRR15517666_standard_report.txt` as inputs from the drop down list.
+3. In the `Select a Kmer distribution field`, choose `Standard` (this was the Kraken2 database used to generate these reports).
+4. Leave the remaining parameters unchanged and click `Run Tool`
+
+::: {.callout-task .callout-tip}
+Examine Bracken outputs - did any read counts get reassigned?
+:::
+
+#### ![icon](metagenomics/footprints.png){width=35px} Steps to alculate alpha diversity for the two samples
+1. Search for `Krakentools: Calculates alpha diversity` in the Tools list
+2. Click the `Multiple datasets` icon and select the two Bracken reports as inputs.
+3. Leave the remaining parameters unchanged and click `Run Tool`
+
+You will receive a Shannon index value for each sample. \
+
+::: {.callout-question .callout-tip}
+What values for Shannon diversity index did you get? How different are they between the two samples? Is this what you expected?
+:::
+
+::: {.callout-question .callout-tip}
+Do you remember from the lecture what the Shannon diversity index values you got might mean?
+:::
+
 
 
