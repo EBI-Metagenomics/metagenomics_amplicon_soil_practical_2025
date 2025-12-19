@@ -72,7 +72,7 @@ The upload will take a few minutes. While the data are uploading, you will see t
 2. We will only be specifying one parameter: "Raw read data from your current history". Select the FASTQ file we just downloaded and click the blue "Run Tool" button:\
 ![Galaxy history](metagenomics/fastqc1.png){width=500px style="border:1px solid grey;"}\
 3. `FastQC` should now be running (you should see it in orange in your history menu on the right). Because it takes a while to run on such a large file, we will proceed to other steps now and come back to look at the results later. \
-**Note the step number to easily come back to it when it's done.**
+**Note the step number in Galaxy history to easily come back to it when it's done.**
 
 --------------------------------------------------
 
@@ -81,7 +81,7 @@ The upload will take a few minutes. While the data are uploading, you will see t
 ![icon](metagenomics/read.png){width=35px} Let's now find out what taxa we have in these two samples. We will be using `Kraken2`.\
 Because of how large the files are (this is the reality of metagenomics, especially soil/rhisozphere), we already ran `Kraken2` for you. You will be working with the outputs of these runs.\
 
-These is the command that was used on each of the two samples (using `SRR15517665` as the example here):\
+This is the command that was used on each of the two samples (using `SRR15517665` as the example here):\
 ```
 kraken2 --paired --gzip-compressed --threads 32 --db  Standard \
 --report SRR15517665_standard_report.txt --output SRR15517665_standard.out \
@@ -173,7 +173,7 @@ Now compare the two samples to each other (make sure you are comparing the resul
 
 ![icon](metagenomics/read.png){width=35px}  Alpha diversity describes how diverse a single sample is. It summarizes how many taxa are present (a metric called richness) and how evenly they are distributed within that one sample. In other words, it answers the question *"How complex is this community?"*\
 
-We can compute diversity metrics from the `Kraken2` outputs but we first need to process them with a tool called `Bracken`. `Bracken` fixes a known limitation of `Kraken2` by turning classifications into more accurate abundance estimates. `Kraken2` classifies each read to the lowest common ancestor (LCA) in the taxonomy. It is optimized for speed and classification, not abundance. If a read matches multiple closely related species, `Kraken2` assigns it higher up (genus, family, etc.) leading to inflated counts of higher taxonomic levels. \
+We can compute diversity metrics from the `Kraken2` outputs but we first need to process them with a tool called `Bracken`. `Bracken` fixes a known limitation of `Kraken2` by turning classifications into more accurate abundance estimates. `Kraken2` classifies each read to the lowest common ancestor (LCA) in the taxonomy. It is optimised for speed and classification, not abundance. If a read matches multiple closely related species, `Kraken2` assigns it higher up (genus, family, etc.) leading to inflated counts of higher taxonomic levels. \
 `Bracken` uses k-mer distribution information from the Kraken2 database to reassign reads downward to species (or genus, etc.). It estimated read counts and relative abundances and answers the question *"Given these ambiguous classifications, what is the most likely true abundance?"*\
 
 For this exercise, we will only use Kraken2 outputs computed using the Standard database to save time. We will be computing the Shannon diversity index, which will give us a single number summarising species richness and evenness in a sample.
@@ -192,7 +192,7 @@ Given the Krona plots you just examined, how different do you expect alpha diver
 Examine Bracken outputs - did any read counts get reassigned?
 :::
 
-#### ![icon](metagenomics/footprints.png){width=35px} Steps to alculate alpha diversity for the two samples
+#### ![icon](metagenomics/footprints.png){width=35px} Steps to calculate alpha diversity for the two samples
 1. Search for `Krakentools: Calculates alpha diversity` in the Tools list
 2. Click the `Multiple datasets` icon and select the two Bracken reports as inputs.
 3. Leave the remaining parameters unchanged and click `Run Tool`
