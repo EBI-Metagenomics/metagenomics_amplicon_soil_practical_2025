@@ -194,9 +194,9 @@ Kraken2 was only focused on a bacterial database, while we used a generic SSU da
 
 Let's focus only on the bacterial annotations by clicking on the `Bacteria` sections of the plots. 
 
-![](amplicon/MAPseq_bacteria_focus.png)
+![MAPseq - bacterial portion](amplicon/MAPseq_bacteria_focus.png)
 
-![](amplicon/Kraken2_bacteria_focus.png)
+![Kraken2 - bacterial portion](amplicon/Kraken2_bacteria_focus.png)
 
 ::: {.callout-question .callout-tip}
 Quite clearly, Kraken2 wasn't able to pick up as many annotations as MAPseq. You will explore this in more detail in the metagenomics section, but why do you think Kraken2 doesn't work as well on amplicon, and it's probably better suited for metagenomics data?
